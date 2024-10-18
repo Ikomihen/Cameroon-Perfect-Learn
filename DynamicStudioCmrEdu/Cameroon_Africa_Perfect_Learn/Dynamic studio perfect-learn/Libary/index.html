@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameroon Perfect Learn - Library</title>
+    <style>
+        /* Global Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #002060;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .category-section {
+            margin-top: 30px;
+        }
+
+        .category-section h2 {
+            text-align: left;
+            color: #002060;
+            font-size: 22px;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        .book-card {
+            background-color: white;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+        }
+
+        .book-image {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+        }
+
+        .book-content {
+            flex: 1;
+            padding-left: 15px;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #002060;
+            margin: 0;
+        }
+
+        .book-author {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .book-price {
+            margin: 5px 0;
+            font-weight: bold;
+            color: #e67e22;
+        }
+
+        .book-button {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .book-button button {
+            background-color: #002060;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .no-results {
+            text-align: center;
+            font-size: 18px;
+            color: #999;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Cameroon Perfect Learn - Library</h1>
+    </header>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for books...">
+        </div>
+
+        <!-- General Education (GCE) -->
+        <div class="category-section" id="gce-ol">
+            <h2>Ordinary Level (O/L)</h2>
+            <div class="book-card">
+                <div class="book-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+                <div class="book-content">
+                    <h3 class="book-title">Mathematics for O Level</h3>
+                    <p class="book-author">By John Doe</p>
+                    <p class="book-price">Free</p>
+                    <div class="book-button">
+                        <button>Download</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more O/L books here -->
+        </div>
+
+        <div class="category-section" id="gce-al">
+            <h2>Advanced Level (A/L)</h2>
+            <div class="book-card">
+                <div class="book-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+                <div class="book-content">
+                    <h3 class="book-title">Physics for A Level</h3>
+                    <p class="book-author">By Jane Smith</p>
+                    <p class="book-price">Free</p>
+                    <div class="book-button">
+                        <button>Download</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more A/L books here -->
+        </div>
+
+        <!-- Baccalaureate (BAC) -->
+        <div class="category-section" id="bac-a">
+            <h2>Baccalaureate (BAC) - Series A</h2>
+            <div class="book-card">
+                <div class="book-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+                <div class="book-content">
+                    <h3 class="book-title">Literature for Series A</h3>
+                    <p class="book-author">By Paul Dupont</p>
+                    <p class="book-price">Paid - $10</p>
+                    <div class="book-button">
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more Series A books here -->
+        </div>
+
+        <!-- Technical Education -->
+        <div class="category-section" id="technical-education">
+            <h2>Technical Education</h2>
+            <div class="book-card">
+                <div class="book-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+                <div class="book-content">
+                    <h3 class="book-title">Civil Engineering Basics</h3>
+                    <p class="book-author">By Engineer Mike</p>
+                    <p class="book-price">Paid - $15</p>
+                    <div class="book-button">
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more Technical Education books here -->
+        </div>
+
+        <!-- Religious Education -->
+        <div class="category-section" id="religious-education">
+            <h2>Religious Education</h2>
+            <div class="book-card">
+                <div class="book-image" style="background-image: url('https://via.placeholder.com/150');"></div>
+                <div class="book-content">
+                    <h3 class="book-title">Christian Religious Studies</h3>
+                    <p class="book-author">By Pastor John</p>
+                    <p class="book-price">Free</p>
+                    <div class="book-button">
+                        <button>Download</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more Religious Education books here -->
+        </div>
+    </div>
+
+    <script>
+        // Search Filter Functionality
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchValue = this.value.toLowerCase();
+            const bookCards = document.querySelectorAll('.book-card');
+            let noResults = true;
+
+            bookCards.forEach(function (card) {
+                const title = card.querySelector('.book-title').textContent.toLowerCase();
+                const author = card.querySelector('.book-author').textContent.toLowerCase();
+
+                if (title.includes(searchValue) || author.includes(searchValue)) {
+                    card.style.display = 'flex';
+                    noResults = false;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Display no results message if no match is found
+            if (noResults) {
+                document.querySelector('.container').insertAdjacentHTML('beforeend', '<p class="no-results">No books found</p>');
+            } else {
+                const noResultsMessage = document.querySelector('.no-results');
+                if (noResultsMessage) noResultsMessage.remove();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

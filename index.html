@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login and Signup Form</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            padding: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .input_box {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .toggle_form {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .toggle_form a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .toggle_form a:hover {
+            text-decoration: underline;
+        }
+        .message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .hidden {
+            display: none;
+        }
+        .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+            color: #007bff;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            z-index: 100;
+            width: 90%;
+            max-width: 400px;
+        }
+        .popup h4 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            text-align: center;
+        }
+        .popup input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .popup button {
+            background: #28a745;
+            width: 100%;
+            padding: 10px;
+        }
+        .popup .close {
+            cursor: pointer;
+            color: #dc3545;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0ohfy9u-CDt9K7ZDX-UUbzNCbCRhL7TY",
+            authDomain: "credentials-a17e3.firebaseapp.com",
+            databaseURL: "https://credentials-a17e3-default-rtdb.firebaseio.com",
+            projectId: "credentials-a17e3",
+            storageBucket: "credentials-a17e3.appspot.com",
+            messagingSenderId: "968049262137",
+            appId: "1:968049262137:web:06929729e6c9ca91bcd7e8",
+            measurementId: "G-9VPPGVQN5L"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const toggleLink = document.getElementById('toggle-form');
+            const messageBox = document.getElementById('message');
+            const forgotPasswordLink = document.getElementById('forgot-password');
+            const popup = document.getElementById('password-popup');
+            const closePopup = document.getElementById('close-popup');
+            const resetEmailInput = document.getElementById('reset-email');
+
+            toggleLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginForm.classList.toggle('hidden');
+                signupForm.classList.toggle('hidden');
+                messageBox.innerHTML = '';
+                messageBox.style.display = 'none';
+                updateFormTitle();
+            });
+
+            // Update the form title based on the current view
+            function updateFormTitle() {
+                const title = document.getElementById('form-title');
+                if (loginForm.classList.contains('hidden')) {
+                    title.innerHTML = "Sign Up";
+                } else {
+                    title.innerHTML = "Log In";
+                }
+            }
+
+            // Signup functionality
+            signupForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+
+                    // Send email verification
+                    await sendEmailVerification(user);
+                    displayMessage('Verification email sent. Please check your inbox.', false);
+                    signupForm.reset();
+                } catch (error) {
+                    displayMessage(`Error: ${error.message}`, true);
+                }
+            });
+
+            // Login functionality
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+
+                    // Check if email is verified
+                    if (user.emailVerified) {
+                        alert(`Logged in as ${user.email}`);
+                        window.location.href = "DynamicStudioCmrEdu/Cameroon_Africa_Perfect_Learn/Dynamic studio perfect-learn/index.html";  // Redirect after login
+                    } else {
+                        displayMessage('Please verify your email before logging in.', true);
+                    }
+                } catch (error) {
+                    displayMessage(`Error: ${error.message}`, true);
+                }
+            });
+
+            // Display forgot password popup
+            forgotPasswordLink.addEventListener('click', () => {
+                popup.style.display = 'block';
+            });
+
+            // Close the password reset popup
+            closePopup.addEventListener('click', () => {
+                popup.style.display = 'none';
+                resetEmailInput.value = '';
+                messageBox.style.display = 'none';
+            });
+
+            // Reset password functionality
+            document.getElementById('reset-password-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = resetEmailInput.value;
+
+                try {
+                    await sendPasswordResetEmail(auth, email);
+                    displayMessage('Password reset email sent. Please check your inbox.', false);
+                    popup.style.display = 'none';
+                    resetEmailInput.value = '';
+                } catch (error) {
+                    displayMessage(`Error: ${error.message}`, true);
+                }
+            });
+
+            function displayMessage(message, isError) {
+                messageBox.innerHTML = message;
+                messageBox.classList.toggle('error', isError);
+                messageBox.style.display = 'block';
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h3 id="form-title">Log In</h3>
+        <div class="message" id="message"></div>
+        
+        <!-- Login Form -->
+        <form id="login-form">
+            <div class="input_box">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" placeholder="Enter email address" required />
+            </div>
+            <div class="input_box">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Enter password" required />
+            </div>
+            <button type="submit">Log In</button>
+            <div class="toggle_form">
+                Don't have an account? <a href="#" id="toggle-form">Sign Up</a>
+            </div>
+            <div class="forgot-password" id="forgot-password">Forgot Password?</div>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="hidden">
+            <div class="input_box">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" placeholder="Enter email address" required />
+            </div>
+            <div class="input_box">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" placeholder="Create a password" required />
+            </div>
+            <button type="submit">Sign Up</button>
+            <div class="toggle_form">
+                Already have an account? <a href="#" id="toggle-form">Log In</a>
+            </div>
+        </form>
+
+        <!-- Password Reset Popup -->
+        <div class="popup" id="password-popup">
+            <h4>Reset Password</h4>
+            <form id="reset-password-form">
+                <div class="input_box">
+                    <label for="reset-email">Enter your email address:</label>
+                    <input type="email" id="reset-email" placeholder="Enter your email" required />
+                </div>
+                <button type="submit">Send Reset Email</button>
+                <div class="close" id="close-popup">Close</div>
+            </form>
+            <div class="message" id="reset-message"></div>
+        </div>
+    </div>
+</body>
+</html>

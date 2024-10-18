@@ -1,0 +1,209 @@
+/* Adjusting the block size */
+.block {
+  background-color: transparent; /* Removes any background color */
+  margin: 30px; /* Increased margin for more spacing around the block */
+  padding: 30px; /* Increased padding for more internal spacing */
+  position: relative; /* Ensure positioning context for child elements */
+}
+
+/* Course grid settings */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Default to two columns layout */
+  gap: 30px; /* Increased gap between items */
+  max-width: 1200px; /* Increased max-width */
+  width: 100%;
+  padding: 20px; /* Increased padding */
+  border-radius: 12px; /* Border-radius */
+}
+
+/* Responsive grid settings */
+@media (min-width: 600px) {
+  .course-grid {
+    grid-template-columns: repeat(3, 1fr); /* Three columns layout for medium screens */
+  }
+}
+
+@media (min-width: 900px) {
+  .course-grid {
+    grid-template-columns: repeat(4, 1fr); /* Four columns layout for large screens */
+  }
+}
+
+/* Course item styling */
+.course-item {
+  background-color: white;
+  padding: 20px; /* Increased padding */
+  border-radius: 12px; /* Increased border-radius */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 180px; /* Increased height */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Transitions */
+  position: relative;
+  overflow: hidden; /* Prevents content from overflowing */
+  animation: float 5s ease-in-out infinite, pulse 2s ease-in-out infinite, colorChange 3s ease-in-out infinite, rotate 6s linear infinite; /* Enhanced animations */
+}
+
+/* Independent animations for each block */
+.course-item:nth-child(1) {
+  animation: float1 6s ease-in-out infinite, pulse1 2s ease-in-out infinite, colorChange1 4s ease-in-out infinite, rotate1 8s linear infinite;
+}
+
+.course-item:nth-child(2) {
+  animation: float2 7s ease-in-out infinite, pulse2 2.5s ease-in-out infinite, colorChange2 5s ease-in-out infinite, rotate2 9s linear infinite;
+}
+
+.course-item:nth-child(3) {
+  animation: float3 8s ease-in-out infinite, pulse3 3s ease-in-out infinite, colorChange3 6s ease-in-out infinite, rotate3 10s linear infinite;
+}
+
+.course-item:nth-child(4) {
+  animation: float4 9s ease-in-out infinite, pulse4 3.5s ease-in-out infinite, colorChange4 7s ease-in-out infinite, rotate4 11s linear infinite;
+}
+
+/* Course item hover effect */
+.course-item:hover {
+  transform: translateY(-60px); /* Increased floating distance */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  background-color: #f9f9f9; /* Light gray background on hover */
+}
+
+/* Icon styling */
+.course-item .icon {
+  font-size: 32px; /* Increased icon size */
+  color: #333;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out; /* Transition for icon transform and color */
+}
+
+.course-item:hover .icon {
+  transform: rotate(360deg); /* Rotate icon 360 degrees on hover */
+  color: #4CAF50; /* Change color on hover */
+}
+
+/* Course title styling */
+.course-title {
+  font-size: 20px; /* Increased font size */
+  font-weight: bold;
+  margin-top: 10px; /* Margin */
+}
+
+/* Course count styling */
+.course-count {
+  font-size: 16px; /* Increased font size */
+}
+
+/* Visit link styling */
+.visit-link {
+  font-size: 14px; /* Increased font size */
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #4CAF50;
+  border-radius: 6px; /* Increased border-radius */
+  padding: 8px 16px; /* Increased padding */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transitions */
+  position: absolute; /* Absolute positioning to control placement */
+  bottom: 10px; /* Distance from the bottom of the .course-item */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  z-index: 1; /* Ensure it stays above other content */
+}
+
+/* Visit link hover effect */
+.visit-link:hover {
+  background-color: #4CAF50;
+  color: white;
+  transform: scale(1.2); /* Slightly enlarge on hover */
+}
+
+/* Floating animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-60px); /* Increased floating distance */
+  }
+}
+
+/* Pulse animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6; /* Slightly reduce opacity to create pulse effect */
+  }
+}
+
+/* Color change animations */
+@keyframes colorChange {
+  0%, 100% {
+    background-color: white;
+  }
+  50% {
+    background-color: #e0f7fa; /* Light blue background color change */
+  }
+}
+
+/* Rotation animations */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); /* Initial rotation */
+  }
+  100% {
+    transform: rotate(360deg); /* Complete rotation */
+  }
+}
+
+/* Independent floating animations */
+@keyframes float1 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-70px); /* Independent distance */
+  }
+}
+
+/* Additional pulse, color change, and rotate animations */
+@keyframes pulse1 {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes colorChange1 {
+  0%, 100% {
+    background-color: white;
+  }
+  50% {
+    background-color: #ffe0b2; /* Light orange background color change */
+  }
+}
+
+@keyframes rotate1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg); /* Double rotation */
+  }
+}
+
+/* Additional keyframes for other animations (float2, pulse2, etc.) */
+@keyframes float2 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-80px);
+  }
+}
+
+/* Define pulse2, colorChange2, rotate2, and so on similarly */

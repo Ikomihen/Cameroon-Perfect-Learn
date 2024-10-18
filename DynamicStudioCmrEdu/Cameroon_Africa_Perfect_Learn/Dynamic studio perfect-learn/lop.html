@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      /* Spinner and message style */
+      .spinner-wrapper {
+        display: none;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1); /* Light grey */
+        border-top: 4px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .dots-wrapper {
+        margin-top: 10px;
+      }
+
+      .dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
+        border-radius: 50%;
+        background-color: #3498db;
+        animation: bounce 1.4s infinite both;
+      }
+
+      .dot:nth-child(1) {
+        animation-delay: 0s;
+      }
+
+      .dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes bounce {
+        0%, 80%, 100% {
+          transform: scale(0);
+        }
+        40% {
+          transform: scale(1);
+        }
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        font-weight: bold;
+      }
+
+      .form-group select,
+      .form-group input {
+        width: 100%;
+      }
+    </style>
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <div class="content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 contents">
+            <div class="row justify-content-center">
+              <div class="col-md-12">
+                <div class="form-block">
+                  <div class="mb-4">
+                  <h3 style="text-align:center"><strong>Sign Up </strong></h3>
+                    <h3>____<strong>Perfect Learn</strong>____</h3>
+                    <p class="mb-4">Empowering Education in Cameroon , Africa and Globally </p>
+                  </div>
+                  <form id="signup-form" method="post">
+                    <div class="form-group">
+                      <label for="first-name">First Name</label>
+                      <input type="text" class="form-control" id="first-name" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="last-name">Last Name</label>
+                      <input type="text" class="form-control" id="last-name" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="dob">Date of Birth</label>
+                      <input type="date" class="form-control" id="dob" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="address">Address</label>
+                      <input type="text" class="form-control" id="address" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="current-school">Current School or Institution</label>
+                      <input type="text" class="form-control" id="current-school" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="education-level">Education Level</label>
+                      <select id="education-level" class="form-control" required><option value="ordinary-level"></option>
+                      
+                        <optgroup label="Ordinary Level">
+                          <option value="ordinary-level">Ordinary Level</option>
+                          <option value="technical-ordinary">Technical (Ordinary Level)</option>
+                          <option value="commercial-ordinary">Commercial (Ordinary Level)</option>
+                        </optgroup>
+                        <optgroup label="Advanced Level">
+                          <option value="advanced-level">Advanced Level</option>
+                          <option value="technical-advanced">Technical (Advanced Level)</option>
+                          <option value="commercial-advanced">Commercial (Advanced Level)</option>
+                        </optgroup>
+                        <option value="bepc">BEPC</option>
+                        <option value="baccalaureate">Baccalaureate</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="phone-number">Phone Number</label>
+                      <input type="tel" class="form-control" id="phone-number" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="gender">Gender</label>
+                      <select id="gender" class="form-control" required>
+                        <option value="ordinary-level"></option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email Address</label>
+                      <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="confirm-password">Confirm Password</label>
+                      <input type="password" class="form-control" id="confirm-password" required>
+                    </div>
+                    <div class="d-flex mb-5 align-items-center">
+                      <label class="control control--checkbox mb-0">
+                        <span class="caption">Remember me</span>
+                        <input type="checkbox" checked="checked"/>
+                        <div class="control__indicator"></div>
+                      </label>
+                      <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
+                    </div>
+                    <input type="submit" value="Sign Up" class="btn btn-pill text-white btn-block btn-primary">
+                    <span class="d-block text-center my-4 text-muted">or sign up with</span>
+                    <div class="social-login text-center">
+                      <a href="#" class="facebook">
+                        <span class="icon-facebook mr-3"></span>
+                      </a>
+                      <a href="#" class="twitter">
+                        <span class="icon-twitter mr-3"></span>
+                      </a>
+                      <a href="#" class="google">
+                        <span class="icon-google mr-3"></span>
+                      </a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spinner with message -->
+    <div id="spinner-wrapper" class="spinner-wrapper">
+      <div class="spinner"></div>
+      <div class="dots-wrapper">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="message">Please wait...</div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+      
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyD0ohfy9u-CDt9K7ZDX-UUbzNCbCRhL7TY",
+        authDomain: "credentials-a17e3.firebaseapp.com",
+        projectId: "credentials-a17e3",
+        storageBucket: "credentials-a17e3.appspot.com",
+        messagingSenderId: "968049262137",
+        appId: "1:968049262137:web:446bf64943070f07bcd7e8",
+        measurementId: "G-ZC5V6SG9SQ"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Get references to form elements and spinner
+      const form = document.getElementById('signup-form');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirm-password');
+      const spinnerWrapper = document.getElementById('spinner-wrapper');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        // Show spinner
+        spinnerWrapper.style.display = 'block';
+
+        // Get values from the form
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const dob = document.getElementById('dob').value;
+        const address = document.getElementById('address').value;
+        const currentSchool = document.getElementById('current-school').value;
+        const educationLevel = document.getElementById('education-level').value;
+        const phoneNumber = document.getElementById('phone-number').value;
+        const gender = document.getElementById('gender').value;
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        // Check if passwords match
+        if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          // Hide spinner
+          spinnerWrapper.style.display = 'none';
+          return;
+        }
+
+        try {
+          // Sign up with Firebase
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
+          console.log('User signed up:', user);
+
+          // Alert and redirect after signup
+          alert('Signup successful!');
+          window.location.href = "file:///var/mobile/Containers/Data/Application/B65EB64F-BB7A-447C-8FB3-879F42FAF035/Documents/KeepData/script/DYNAMIC%20EDU/Dynamic%20studio%20perfect-learn/index.html";
+        } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.error('Error signing up:', errorCode, errorMessage);
+          // Show error message to the user
+          alert('Error signing up: ' + errorMessage);
+        } finally {
+          // Hide spinner
+          spinnerWrapper.style.display = 'none';
+        }
+      });
+    </script>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
